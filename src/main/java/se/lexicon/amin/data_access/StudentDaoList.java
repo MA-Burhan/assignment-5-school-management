@@ -8,7 +8,7 @@ import java.util.List;
 
 public class StudentDaoList implements StudentDao {
 
-    private static List<Student> students;
+    private static List<Student> students = new ArrayList<>();
 
     @Override
     public Student saveStudent(Student student) {

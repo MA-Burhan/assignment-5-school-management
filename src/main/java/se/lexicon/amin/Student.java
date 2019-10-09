@@ -20,7 +20,6 @@ public class Student {
         return id;
     }
 
-
     public String getName() {
         return name;
     }
@@ -30,10 +29,12 @@ public class Student {
     }
 
     public String getEmail() {
+
         return email;
     }
 
     public void setEmail(String email) {
+
         this.email = email;
     }
 
