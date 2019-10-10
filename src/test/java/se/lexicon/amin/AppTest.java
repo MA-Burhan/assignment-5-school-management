@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import se.lexicon.amin.data_access.CourseDao;
 import se.lexicon.amin.data_access.CourseDaoList;
 import se.lexicon.amin.data_access.StudentDaoList;
 
@@ -351,6 +350,37 @@ public class AppTest {
 
         assertEquals(1, testCourse1.getStudents().size());
 
+    }
+
+    @Test
+    public void testStudentCanParticipateInManyCourses() {
+
+        testCourse2.register(testStudent1);
+        testCourse3.register(testStudent1);
+        testCourse4.register(testStudent1);
+        testCourse5.register(testStudent1);
+
+        assertTrue(testCourse1.getStudents().contains(testStudent1));
+        assertTrue(testCourse2.getStudents().contains(testStudent1));
+        assertTrue(testCourse3.getStudents().contains(testStudent1));
+        assertTrue(testCourse4.getStudents().contains(testStudent1));
+        assertTrue(testCourse5.getStudents().contains(testStudent1));
+
+    }
+
+    @Test
+    public void testCourseCanHaveManyStudents() {
+
+        testCourse1.register(testStudent2);
+        testCourse1.register(testStudent3);
+        testCourse1.register(testStudent4);
+        testCourse1.register(testStudent5);
+
+        assertTrue(testCourse1.getStudents().contains(testStudent1));
+        assertTrue(testCourse1.getStudents().contains(testStudent2));
+        assertTrue(testCourse1.getStudents().contains(testStudent3));
+        assertTrue(testCourse1.getStudents().contains(testStudent4));
+        assertTrue(testCourse1.getStudents().contains(testStudent5));
     }
 
     @Test
