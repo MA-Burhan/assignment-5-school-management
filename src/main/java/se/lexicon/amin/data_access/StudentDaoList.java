@@ -1,10 +1,11 @@
 package se.lexicon.amin.data_access;
 
 import se.lexicon.amin.Student;
-import se.lexicon.amin.data_access.StudentDao;
+
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StudentDaoList implements StudentDao {
 
@@ -14,8 +15,33 @@ public class StudentDaoList implements StudentDao {
     public Student saveStudent(Student student) {
 
         if (!students.contains(student)) {
-            students.add(student);
-        return student;
+
+            List<String> listOfAllEmails = students.stream().map(stud -> stud.getEmail()).collect(Collectors.toList());
+            String studentEmail = student.getEmail();
+
+            if( !listOfAllEmails.contains(studentEmail) ) {
+                students.add(student);
+                return student;
+            } else {
+                return null;
+            }
+
+        }
+
+        return null;
+    }
+
+    @Override
+    public boolean deleteStudent(Student student) {
+        return students.remove(student);
+    }
+
+    @Override
+    public Student findById(int id) {
+        for(Student student : students) {
+            if(student.getId() == id) {
+                return student;
+            }
         }
 
         return null;
@@ -33,38 +59,20 @@ public class StudentDaoList implements StudentDao {
 
     @Override
     public List<Student> findByName(String name) {
-        List<Student> studentList = new ArrayList<>();
-        for (Student student : students) {
-            if(student.getName().equals(name)) {
-                studentList.add(student);
-            }
-        }
 
-        if(!studentList.isEmpty()) {
-            return studentList;
-        } else {
-            return null;
-        }
+        return students
+                .stream()
+                .filter(student -> student.getName().equals(name))
+                .collect(Collectors.toList());
+
     }
 
-    @Override
-    public Student findById(int id) {
-        for(Student student : students) {
-            if(student.getId() == id) {
-                return student;
-            }
-        }
 
-        return null;
-    }
 
     @Override
     public List<Student> findAll() {
         return students;
     }
 
-    @Override
-    public boolean deleteStudent(Student student) {
-        return students.remove(student);
-    }
+
 }

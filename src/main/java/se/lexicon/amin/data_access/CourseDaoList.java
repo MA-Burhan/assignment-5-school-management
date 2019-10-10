@@ -5,10 +5,12 @@ import se.lexicon.amin.Course;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CourseDaoList implements CourseDao {
 
     private static List<Course> courses = new ArrayList<>();
+
 
     @Override
     public Course saveCourse(Course course) {
@@ -29,42 +31,26 @@ public class CourseDaoList implements CourseDao {
                 return course;
             }
         }
-
         return null;
     }
 
     @Override
     public List<Course> findByName(String name) {
-        List<Course> courseList = new ArrayList<>();
 
-        for(Course course : courses) {
-            if(course.getCourseName().equals(name)) {
-                courseList.add(course);
-            }
-        }
-
-        if(!courseList.isEmpty()) {
-            return courseList;
-        } else {
-            return null;
-        }
+        return courses
+                .stream()
+                .filter(course -> course.getCourseName().equals(name))
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Course> findByDate(LocalDate date) {
-        List<Course> courseList = new ArrayList<>();
 
-        for(Course course : courses) {
-            if(course.getStartDate().equals(date)) {
-                courseList.add(course);
-            }
-        }
+        return courses
+                .stream()
+                .filter(course -> course.getStartDate().equals(date))
+                .collect(Collectors.toList());
 
-        if(!courseList.isEmpty()) {
-            return courseList;
-        } else {
-            return null;
-        }
     }
 
     @Override

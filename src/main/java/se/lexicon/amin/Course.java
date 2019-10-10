@@ -37,7 +37,6 @@ public class Course {
         return id;
     }
 
-
     public String getCourseName() {
         return courseName;
     }
