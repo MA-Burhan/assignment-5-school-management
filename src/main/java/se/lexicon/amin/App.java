@@ -19,14 +19,56 @@ public class App
 
     public static void main( String[] args ) {
 
+        Scanner scanner = new Scanner(System.in);
+        boolean quit = false;
+        printMenu();
+
+        while(!quit){
+            System.out.print("Select what type operation you want to do: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch(choice) {
+                case 1:
+                    createCourse();
+                    break;
+                case 2:
+                    createStudent();
+                    break;
+                case 3:
+                    System.out.println("Enter Student id: ");
+                    int studentID = scanner.nextInt();
+                    System.out.println("Enter Course id: ");
+                    int courseID = scanner.nextInt();
+
+                    registerStudent(studentList.findById(studentID), courseList.findById());
+                    break;
+                case 4:
+                    System.out.println("Enter Student id: ");
+                    studentID = scanner.nextInt();
+                    System.out.println("Enter Course id: ");
+                    courseID = scanner.nextInt();
+
+                    unregisterStudent(studentList.findById(studentID), courseList.findById());
+                    break;
+
+                    
+
+            }
+        }
+
 
 
 
     }
 
-    public static void printMeny(){
+    public static void printMenu(){
         System.out.println("1. Create new course\n" +
-                "2. Create new student)\n3. Register Student to course.\n4. Unregister student from course\n5.List all students\n6.List all courses");
+                        "2. Create new student)\n" +
+                        "3. Register Student to course.\n" +
+                        "4. Unregister student from course\n" +
+                        "5.List all students\n" +
+                        "6.List all courses");
     }
 
     public static void createCourse() {
