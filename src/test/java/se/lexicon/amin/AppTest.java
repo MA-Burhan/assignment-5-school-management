@@ -102,24 +102,34 @@ public class AppTest {
     public void testRemoveCourse() {
 
         assertTrue(courseList.findAll().contains(testCourse1));
+        assertTrue(courseList.findAll().contains(testCourse2));
+        assertTrue(courseList.findAll().contains(testCourse3));
+        assertTrue(courseList.findAll().contains(testCourse4));
+        assertTrue(courseList.findAll().contains(testCourse5));
 
         courseList.removeCourse(testCourse1);
 
         assertFalse(courseList.findAll().contains(testCourse1));
-
-    }
-
-    @Test
-    public void testRemoveOnlySpecifiedCourse() {
-
-        courseList.removeCourse(testCourse1);
 
         //Remaining courses should still be in the list
         assertTrue(courseList.findAll().contains(testCourse2));
         assertTrue(courseList.findAll().contains(testCourse3));
         assertTrue(courseList.findAll().contains(testCourse4));
         assertTrue(courseList.findAll().contains(testCourse5));
+
     }
+
+//    @Test
+//    public void testRemoveOnlySpecifiedCourse() {
+//
+//        courseList.removeCourse(testCourse1);
+//
+//        //Remaining courses should still be in the list
+//        assertTrue(courseList.findAll().contains(testCourse2));
+//        assertTrue(courseList.findAll().contains(testCourse3));
+//        assertTrue(courseList.findAll().contains(testCourse4));
+//        assertTrue(courseList.findAll().contains(testCourse5));
+//    }
 
 
     @Test
@@ -235,26 +245,35 @@ public class AppTest {
     public void testRemoveStudent() {
 
         assertTrue(studentList.findAll().contains(testStudent1));
+        assertTrue(studentList.findAll().contains(testStudent2));
+        assertTrue(studentList.findAll().contains(testStudent3));
+        assertTrue(studentList.findAll().contains(testStudent4));
+        assertTrue(studentList.findAll().contains(testStudent5));
 
         studentList.deleteStudent(testStudent1);
 
         assertFalse(studentList.findAll().contains(testStudent1));
-
-    }
-
-    @Test
-    public void testRemoveOnlySpecifiedStudent() {
-
-
-        studentList.deleteStudent(testStudent1);
 
         ////Remaining students should still be in the list
         assertTrue(studentList.findAll().contains(testStudent2));
         assertTrue(studentList.findAll().contains(testStudent3));
         assertTrue(studentList.findAll().contains(testStudent4));
         assertTrue(studentList.findAll().contains(testStudent5));
-
     }
+
+//    @Test
+//    public void testRemoveOnlySpecifiedStudent() {
+//
+//
+//        studentList.deleteStudent(testStudent1);
+//
+//        ////Remaining students should still be in the list
+//        assertTrue(studentList.findAll().contains(testStudent2));
+//        assertTrue(studentList.findAll().contains(testStudent3));
+//        assertTrue(studentList.findAll().contains(testStudent4));
+//        assertTrue(studentList.findAll().contains(testStudent5));
+//
+//    }
 
     @Test
     public void testFindStudentByExistingId(){
